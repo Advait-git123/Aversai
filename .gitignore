@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Environments
+.env
+.venv/
+env/
+venv/
+
+# Vector stores
+docs/chroma/
+
+# Text outputs and artifacts
+docs/clean_text/
+docs/rules/extracted_rules_llm.json
+docs/raw_pdfs/
+
+# System files
+.DS_Store
+*.swp

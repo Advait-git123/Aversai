@@ -1,0 +1,10 @@
+langchain>=0.2
+chromadb
+faiss-cpu
+pypdf
+spacy
+sentence-transformers>=2.6
+openai
+fastapi
+uvicorn
+pydantic
