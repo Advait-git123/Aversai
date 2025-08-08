@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from dotenv import load_dotenv
 from langchain_community.chat_models import ChatOpenAI
-from langchain_core.schema import SystemMessage, HumanMessage
+from langchain.schema import SystemMessage, HumanMessage
 
 # Load .env
 load_dotenv()
