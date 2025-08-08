@@ -16,7 +16,7 @@ venv/
 # IDE files
 .vscode/
 .idea/
-model_llm
+
 # Data folders - keep only placeholders
 Backend/docs/raw_pdfs/*
 Backend/docs/clean_text/*
