@@ -4,10 +4,9 @@ from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_community.llms import OpenAI
 import os
 from dotenv import load_dotenv
+from model_llm.llama_interface import get_llama_response
+import model_llm
 
-# Load API key
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Paths
 CHROMA_DIR = "docs/chroma"
@@ -27,13 +26,7 @@ def build_chain():
         search_kwargs={"k": 10}
     )
 
-    llm = OpenAI(
-        model="gpt-4o-mini",
-        temperature=0,
-        openai_api_key=OPENAI_API_KEY,
-        response_format={"type": "json_object"}  # force JSON
-    )
-
+    llm ="model_llm/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf"
     chain = RetrievalQAWithSourcesChain.from_chain_type(
         llm=llm,
         retriever=retriever,

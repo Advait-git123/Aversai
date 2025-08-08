@@ -16,15 +16,13 @@ venv/
 # IDE files
 .vscode/
 .idea/
-
+model_llm
 # Data folders - keep only placeholders
 Backend/docs/raw_pdfs/*
 Backend/docs/clean_text/*
-Backend/docs/rules/*
 Backend/docs/chroma/*
 
 # Keep .gitkeep in data folders
 !Backend/docs/raw_pdfs/.gitkeep
 !Backend/docs/clean_text/.gitkeep
-!Backend/docs/rules/.gitkeep
 !Backend/docs/chroma/.gitkeep

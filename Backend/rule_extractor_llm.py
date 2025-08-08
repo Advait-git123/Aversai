@@ -5,11 +5,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain_community.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
+from model_llm.llama_interface import get_llama_response
+from fastapi import  HTTPException
 
 # Load .env
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-assert OPENAI_API_KEY, "Missing OPENAI_API_KEY in .env"
 
 # Paths
 TEXT_DIR = Path("docs/clean_text")
@@ -17,13 +17,8 @@ OUTPUT_PATH = Path("docs/rules/extracted_rules_llm.json")
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # Load model
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0,
-    openai_api_key=OPENAI_API_KEY
-)
-
-SYSTEM_PROMPT = """You are a compliance assistant. Your job is to extract logical insurance rules from clauses.
+try:
+     prompt = ("""You are a compliance assistant. Your job is to extract logical insurance rules from clauses.
 
 For every input clause, return either:
 - A JSON rule like this:
@@ -39,7 +34,11 @@ For every input clause, return either:
 Or just return null if no rule is found.
 
 Respond only with a single JSON object.
-"""
+""")
+     insight_response = get_llama_response(prompt)   
+except Exception as e:
+        raise HTTPException(status_code=500, detail=f"LLaMA Error: {str(e)}")
+
 
 def sanitize(text: str):
     return re.sub(r"\s+", " ", text).strip()
@@ -51,10 +50,10 @@ def extract_rules_from_text(text: str, file_id: str):
     for idx, clause in enumerate(chunks):
         try:
             messages = [
-                SystemMessage(content=SYSTEM_PROMPT),
+                SystemMessage(content=prompt),
                 HumanMessage(content=clause)
             ]
-            response = llm(messages).content
+            response = insight_response(messages).content
             if "null" in response.lower():
                 continue
             rule = json.loads(response)
