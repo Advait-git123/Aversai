@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
 
 # Load .env

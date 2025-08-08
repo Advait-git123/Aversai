@@ -1,5 +1,5 @@
 # Core AI & RAG
-langchain>=0.2
+langchain
 langchain_community
 chromadb
 faiss-cpu

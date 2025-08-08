@@ -1,7 +1,7 @@
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQAWithSourcesChain
-from langchain.llms import OpenAI
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.chains import RetrievalQAWithSourcesChain
+from langchain_community.llms import OpenAI
 import os
 from dotenv import load_dotenv
 
