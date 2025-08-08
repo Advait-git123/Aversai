@@ -2,8 +2,8 @@ import spacy
 import re
 from typing import Dict
 from langchain_community.chat_models import ChatOpenAI
-from langchain_community.output_parsers import JsonOutputParser
-from langchain.schema import SystemMessage, HumanMessage
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
 import os
 
