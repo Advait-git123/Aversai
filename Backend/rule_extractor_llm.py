@@ -5,11 +5,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain_community.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
-from model_llm.llama_interface import get_llama_response
-from fastapi import  HTTPException
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Load .env
 load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+assert GEMINI_API_KEY, "Missing GEMINI_API_KEY in .env"
 
 # Paths
 TEXT_DIR = Path("docs/clean_text")
@@ -17,8 +18,13 @@ OUTPUT_PATH = Path("docs/rules/extracted_rules_llm.json")
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # Load model
-try:
-     prompt = ("""You are a compliance assistant. Your job is to extract logical insurance rules from clauses.
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-flash",      # or the model you want, e.g., "gemini-1.5-pro"
+    temperature=0,                
+    google_api_key=GEMINI_API_KEY  # Note: Use google_api_key param
+)
+
+SYSTEM_PROMPT = """You are a compliance assistant. Your job is to extract logical insurance rules from clauses.
 
 For every input clause, return either:
 - A JSON rule like this:
@@ -34,11 +40,7 @@ For every input clause, return either:
 Or just return null if no rule is found.
 
 Respond only with a single JSON object.
-""")
-     insight_response = get_llama_response(prompt)   
-except Exception as e:
-        raise HTTPException(status_code=500, detail=f"LLaMA Error: {str(e)}")
-
+"""
 
 def sanitize(text: str):
     return re.sub(r"\s+", " ", text).strip()
@@ -50,10 +52,10 @@ def extract_rules_from_text(text: str, file_id: str):
     for idx, clause in enumerate(chunks):
         try:
             messages = [
-                SystemMessage(content=prompt),
+                SystemMessage(content=SYSTEM_PROMPT),
                 HumanMessage(content=clause)
             ]
-            response = insight_response(messages).content
+            response = llm(messages).content
             if "null" in response.lower():
                 continue
             rule = json.loads(response)

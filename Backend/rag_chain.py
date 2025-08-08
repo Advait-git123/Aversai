@@ -4,9 +4,12 @@ from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_community.llms import OpenAI
 import os
 from dotenv import load_dotenv
-from model_llm.llama_interface import get_llama_response
-import model_llm
+from langchain_google_genai import ChatGoogleGenerativeAI
 
+
+# Load API key
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Paths
 CHROMA_DIR = "docs/chroma"
@@ -26,7 +29,12 @@ def build_chain():
         search_kwargs={"k": 10}
     )
 
-    llm ="model_llm/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf"
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-1.5-flash",      # or the model you want, e.g., "gemini-1.5-pro"
+        temperature=0,                
+        google_api_key=GEMINI_API_KEY  # Note: Use google_api_key param
+    )
+
     chain = RetrievalQAWithSourcesChain.from_chain_type(
         llm=llm,
         retriever=retriever,
