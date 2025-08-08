@@ -1,24 +1,30 @@
-# Python
+# Python cache and build files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.sqlite3
+*.log
 
-# Environments
-.env
-.venv/
-env/
+# Virtual environments
 venv/
+.env
+.env.local
 
-# Vector stores
-docs/chroma/
-
-# Text outputs and artifacts
-docs/clean_text/
-docs/rules/extracted_rules_llm.json
-docs/raw_pdfs/
-
-# System files
+# OS files
 .DS_Store
-*.swp
+
+# IDE files
+.vscode/
+.idea/
+
+# Data folders - keep only placeholders
+docs/raw_pdfs/*
+docs/clean_text/*
+docs/rules/*
+Backend/docs/chroma/*
+
+# Keep .gitkeep in data folders
+!Backend/docs/raw_pdfs/.gitkeep
+!Backend/docs/clean_text/.gitkeep
+!Backend/docs/rules/.gitkeep
+!Backend/docs/chroma/.gitkeep
