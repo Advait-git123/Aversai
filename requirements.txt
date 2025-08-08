@@ -1,5 +1,6 @@
 # Core AI & RAG
 langchain>=0.2
+langchain_community
 chromadb
 faiss-cpu
 sentence-transformers>=2.6
@@ -21,3 +22,5 @@ python-dotenv
 
 # Networking & Utils
 requests
+
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
