@@ -18,9 +18,9 @@ venv/
 .idea/
 
 # Data folders - keep only placeholders
-docs/raw_pdfs/*
-docs/clean_text/*
-docs/rules/*
+Backend/docs/raw_pdfs/*
+Backend/docs/clean_text/*
+Backend/docs/rules/*
 Backend/docs/chroma/*
 
 # Keep .gitkeep in data folders
