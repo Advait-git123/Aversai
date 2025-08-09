@@ -2,7 +2,20 @@ import json
 from pathlib import Path
 
 RULE_PATH = Path("Backend/docs/rules/extracted_rules_llm.json")
-RULES = json.loads(RULE_PATH.read_text(encoding="utf-8"))
+if RULE_PATH.exists():
+    content = RULE_PATH.read_text(encoding="utf-8").strip()
+    if content:
+        try:
+            RULES = json.loads(content)
+        except Exception as e:
+            print(f"Error parsing rules file: {e}")
+            RULES = []
+    else:
+        print("Rules file is empty. No rules loaded.")
+        RULES = []
+else:
+    print("Rules file does not exist. No rules loaded.")
+    RULES = []
 
 def apply_rules(parsed: dict) -> dict | None:
     for rule in RULES:
