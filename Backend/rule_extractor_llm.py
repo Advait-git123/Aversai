@@ -14,7 +14,7 @@ assert GEMINI_API_KEY, "Missing GEMINI_API_KEY in .env"
 
 # Paths
 TEXT_DIR = Path("docs/clean_text")
-OUTPUT_PATH = Path("docs/rules/extracted_rules_llm.json")
+OUTPUT_PATH = Path("Backend/docs/rules/extracted_rules_llm.json")
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # Load model

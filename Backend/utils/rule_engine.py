@@ -1,9 +1,7 @@
-# utils/rule_engine.py
-
 import json
 from pathlib import Path
 
-RULE_PATH = Path("docs/rules/extracted_rules_llm.json")
+RULE_PATH = Path("Backend/docs/rules/extracted_rules_llm.json")
 RULES = json.loads(RULE_PATH.read_text(encoding="utf-8"))
 
 def apply_rules(parsed: dict) -> dict | None:

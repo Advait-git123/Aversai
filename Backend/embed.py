@@ -3,8 +3,8 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from pathlib import Path
 import json
 
-CHUNKS_FILE = Path("docs/clean_text/chunks.jsonl")
-CHROMA_DIR = "docs/chroma"
+CHUNKS_FILE = Path("Backend/docs/clean_text/chunks.jsonl")
+CHROMA_DIR = "Backend/docs/chroma"
 
 # Load chunks from file
 def load_chunks(path: Path):

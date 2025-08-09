@@ -5,8 +5,8 @@ import re, json
 import fitz
 
 # ----------- Paths -----------
-RAW_PDF_DIR = Path("docs/raw_pdfs")
-CLEAN_TEXT_DIR = Path("docs/clean_text")
+RAW_PDF_DIR = Path("Backend/docs/raw_pdfs")
+CLEAN_TEXT_DIR = Path("Backend/docs/clean_text")
 CHUNK_OUTPUT = CLEAN_TEXT_DIR / "chunks.jsonl"
 
 CLEAN_TEXT_DIR.mkdir(exist_ok=True, parents=True)
