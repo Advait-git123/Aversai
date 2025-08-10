@@ -23,5 +23,5 @@ RUN pip install --no-cache-dir --upgrade pip \
 EXPOSE 8000
 
 # ---- Run FastAPI app ----
-CMD uvicorn, Backend.app:app, --host, 0.0.0.0, --port, ${PORT}
+CMD uvicorn Backend.app:app, --host, 0.0.0.0, --port, ${PORT}
 
