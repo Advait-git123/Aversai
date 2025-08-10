@@ -43,6 +43,10 @@ def build_chain():
     )
     return chain
 
+def query_rag(query):
+    chain = build_chain()
+    return chain.run(query)
+
 # Simple test function (optional)
 def test_chain():
     query = "46-year-old male needs knee surgery in Pune, policy issued 3 months ago"
