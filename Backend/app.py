@@ -58,7 +58,7 @@ def download_pdf(url: str, filename: str = "remote.pdf"):
 
 # ---------- Main HackRx Endpoint ----------
 @app.post("/hackrx/run")
-async def hackrx_run(input: QueryInput, _: str = Depends(verify_token)):
+async def hackrx_run(input: QueryInput):
     pdf_url = input.documents
     questions = input.questions
 
