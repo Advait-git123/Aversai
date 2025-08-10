@@ -1,6 +1,7 @@
 # Core AI & RAG
 langchain
 langchain_community
+langchain-google-genai
 chromadb
 faiss-cpu
 sentence-transformers>=2.6
