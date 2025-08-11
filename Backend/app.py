@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from utils.parsing import parse_query
-from utils.rule_engine import apply_rules
-from rag_chain import query_rag
-from ingest import convert_pdfs_to_text, chunk_text_files
-from embed import embed_chunks
+from Backend.utils.parsing import parse_query
+from Backend.utils.rule_engine import apply_rules
+from Backend.rag_chain import query_rag
+from Backend.ingest import convert_pdfs_to_text, chunk_text_files
+from Backend.embed import embed_chunks
 from dotenv import load_dotenv
 import requests
 from pathlib import Path
